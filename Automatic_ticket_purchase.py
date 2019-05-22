@@ -4,6 +4,7 @@ import os
 import re
 import time
 import pickle
+
 from tkinter import *
 from time import sleep
 from selenium import webdriver
@@ -21,10 +22,10 @@ damai_url="https://www.damai.cn/"
 #登录页
 login_url="https://passport.damai.cn/login?ru=https%3A%2F%2Fwww.damai.cn%2F"
 #抢票目标页
-target_url="https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.71254d153q9EDX&id=590449968855&clicktitle=%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4-8090%E7%BB%8F%E5%85%B8%E5%8A%A8%E6%BC%AB%E6%BC%94%E5%94%B1%E4%BC%9A%E4%B8%8A%E6%B5%B7%E7%AB%99"
+target_url="https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.153d58efjyb7fF&id=593089517773&clicktitle=2019%20DOTA2%20%E5%9B%BD%E9%99%85%E9%82%80%E8%AF%B7%E8%B5%9B"
 
-name = "your_name"
-phone = "your_PhoneNumber"
+name = "chenziyuan"
+phone = "18686092234"
 
 class Concert(object):
     def __init__(self):
@@ -96,7 +97,7 @@ class Concert(object):
                 # self.driver.find_elements_by_xpath('//html//body//div[@class = "perform__order__price"]//div[2]//div//div//a[2]')[0].click()   #购票数+1(若需要)
 
                 cart = self.driver.find_element_by_class_name('perform')   #获得选票界面的表单值
-
+                self.driver.find_element_by_id('privilege_val').send_keys('3xqzdmrbc7') #填写特权码
                 # try:各种按钮的点击,
                 buybutton = self.driver.find_element_by_class_name('buybtn').text
                 try:
@@ -104,14 +105,22 @@ class Concert(object):
 
                     if buybutton == "立即预定":
                         self.driver.find_element_by_class_name('buybtn').click()
+                        self.driver.find_element_by_class_name('privilege_sub').click()
                         self.status = 3
                         self.num = 1
                     elif buybutton == "立即购买":
                         self.driver.find_element_by_class_name('buybtn').click()
+                        self.driver.find_element_by_class_name('privilege_sub').click()
                         self.status = 4
                     elif buybutton == "选座购买":
                         self.driver.find_element_by_class_name('buybtn').click()
+                        self.driver.find_element_by_class_name('privilege_sub').click()
                         self.status = 5
+
+                    elif buybutton == "即将开抢":
+                        self.driver.refresh()
+                        continue
+
 
                     elif buybutton == "提交缺货登记":
                         print('###抢票失败，请手动提交缺货登记###')  
