@@ -24,8 +24,8 @@ login_url="https://passport.damai.cn/login?ru=https%3A%2F%2Fwww.damai.cn%2F"
 #抢票目标页
 target_url="https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.153d58efjyb7fF&id=593089517773&clicktitle=2019%20DOTA2%20%E5%9B%BD%E9%99%85%E9%82%80%E8%AF%B7%E8%B5%9B"
 
-name = "chenziyuan"
-phone = "18686092234"
+name = ""
+phone = ""
 
 class Concert(object):
     def __init__(self):
@@ -97,7 +97,7 @@ class Concert(object):
                 # self.driver.find_elements_by_xpath('//html//body//div[@class = "perform__order__price"]//div[2]//div//div//a[2]')[0].click()   #购票数+1(若需要)
 
                 cart = self.driver.find_element_by_class_name('perform')   #获得选票界面的表单值
-                self.driver.find_element_by_id('privilege_val').send_keys('3xqzdmrbc7') #填写特权码
+                self.driver.find_element_by_id('privilege_val').send_keys('') #填写特权码
                 # try:各种按钮的点击,
                 buybutton = self.driver.find_element_by_class_name('buybtn').text
                 try:
